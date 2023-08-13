@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "cwm",
+  "version": "${version}",
+  "name": "Cwm",
+  "description": "Cousinware",
+  "authors": [
+    "Ace"
+  ],
+  "contact": {
+    "website": "cousinware.com"
+  },
+  "license": "MIT",
+  "icon": "assests/cwm/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.cousinware.cwm.client.CwmClient"
+    ],
+    "main": [
+      "com.cousinware.cwm.Cwm"
+    ]
+  },
+  "mixins": [
+    "cwm.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.22",
+    "fabric": "*",
+    "minecraft": "1.19.2"
+  }
+}

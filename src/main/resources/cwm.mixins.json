@@ -1,9 +1,12 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.cousinware.cwm.mixin",
+  "package": "com.cousinware.cwm.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "ClientConnectionMixin",
+    "MessageHandlerMixin",
+    "MinecraftClientMixin"
   ],
   "client": [
   ],

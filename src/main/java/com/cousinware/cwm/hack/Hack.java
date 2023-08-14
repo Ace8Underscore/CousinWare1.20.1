@@ -1,22 +1,12 @@
 package com.cousinware.cwm.hack;
 
+import com.cousinware.cwm.client.CwmClient;
 import com.cousinware.cwm.command.Command;
 import com.cousinware.cwm.managers.HackManager;
-import com.mojang.realmsclient.gui.ChatFormatting;
-import io.ace.nordclient.CousinWare;
-import io.ace.nordclient.command.Command;
-import io.ace.nordclient.event.RenderEvent;
-import io.ace.nordclient.managers.HackManager;
-import net.fabricmc.fabric.impl.client.indigo.renderer.helper.ColorHelper;
-import net.minecraft.client.Keyboard;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.input.KeyboardInput;
-import net.minecraft.nbt.visitor.NbtTextFormatter;
-import net.minecraft.text.TextColor;
 import net.minecraft.util.Formatting;
-import net.minecraftforge.common.MinecraftForge;
-import org.lwjgl.input.Keyboard;
-import static org.lwjgl.glfw.GLFW.*;
+
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_UNKNOWN;
 
 public class Hack {
     public static final MinecraftClient mc = MinecraftClient.getInstance();
@@ -95,21 +85,23 @@ public class Hack {
     }
 
     public void enable() {
-        CousinWare.INSTANCE.getEventManager().addEventListener(this);
-        MinecraftForge.EVENT_BUS.register(this);
+        CwmClient.EVENT_BUS.subscribe(this);
+        //MinecraftForge.EVENT_BUS.register(this);
         visableOnArray = true;
         anima = 0;
         setEnabled(true);
         //if (HackManager.getHackByName("ToggleMsgs").isEnabled() && !this.name.equalsIgnoreCase("clickgui")) {
-            Command.sendClientSideMessage("Enabled " + Formatting.GREEN. + this.name);
+            Command.sendClientSideMessage("Enabled " + Formatting.GREEN + this.name);
        // }
         //MinecraftForge.EVENT_BUS.register(this);
         onEnable();
     }
 
     public void disable() {
-        CousinWare.INSTANCE.getEventManager().removeEventListener(this);
-        MinecraftForge.EVENT_BUS.unregister(this);
+        CwmClient.EVENT_BUS.unsubscribe(this);
+
+        //CousinWare.INSTANCE.getEventManager().removeEventListener(this);
+        //MinecraftForge.EVENT_BUS.unregister(this);
         setEnabled(false);
         //if (HackManager.getHackByName("ToggleMsgs").isEnabled() && !this.name.equalsIgnoreCase("clickgui")) {
             Command.sendClientSideMessage("Disabled " + Formatting.RED + this.name);

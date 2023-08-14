@@ -1,13 +1,8 @@
 package com.cousinware.cwm.managers;
 
+import com.cousinware.cwm.hack.exploit.Exploit;
 import com.cousinware.cwm.hack.Hack;
-import io.ace.nordclient.event.RenderEvent;
-import io.ace.nordclient.utilz.render.NordTessellator;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.util.math.Vec3d;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
-import org.lwjgl.opengl.GL11;
+import com.cousinware.cwm.hack.exploit.OutgoingPackets;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -55,7 +50,7 @@ public class HackManager {
         return (ArrayList<Hack>) getHacks().stream().filter(h -> h.getCategory().equals(c)).collect(Collectors.toList());
     }
 
-    public static void onWorldRender(RenderWorldLastEvent event) {
+   /* public static void onWorldRender(RenderWorldLastEvent event) {
         Minecraft.getMinecraft().profiler.startSection("nordClient");
 
         Minecraft.getMinecraft().profiler.startSection("setup");
@@ -90,15 +85,21 @@ public class HackManager {
         NordTessellator.releaseGL();
         Minecraft.getMinecraft().profiler.endSection();
         Minecraft.getMinecraft().profiler.endSection();
-    }
+    } */
 
 
     public static void onBind(int key) {
-        if (key == 0) return;
+        if (key == 0 || key == -1) return;
         hacks.forEach(hack -> {
             if(hack.getBind() == key){
                 hack.toggle();
             }
         });
+    }
+
+    public HackManager() {
+        hacks = new ArrayList<>();
+        hacks.add(new Exploit());
+        hacks.add(new OutgoingPackets());
     }
 }

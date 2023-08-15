@@ -3,6 +3,7 @@ package com.cousinware.cwm.hack;
 import com.cousinware.cwm.client.CwmClient;
 import com.cousinware.cwm.command.Command;
 import com.cousinware.cwm.managers.HackManager;
+import me.zero.alpine.listener.Subscriber;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.Formatting;
 
@@ -85,28 +86,19 @@ public class Hack {
     }
 
     public void enable() {
-        CwmClient.EVENT_BUS.subscribe(this);
         //MinecraftForge.EVENT_BUS.register(this);
         visableOnArray = true;
         anima = 0;
         setEnabled(true);
         //if (HackManager.getHackByName("ToggleMsgs").isEnabled() && !this.name.equalsIgnoreCase("clickgui")) {
-            Command.sendClientSideMessage("Enabled " + Formatting.GREEN + this.name);
+            //Command.sendClientSideMessage("Enabled " + Formatting.GREEN + this.name);
        // }
         //MinecraftForge.EVENT_BUS.register(this);
         onEnable();
     }
 
     public void disable() {
-        CwmClient.EVENT_BUS.unsubscribe(this);
-
-        //CousinWare.INSTANCE.getEventManager().removeEventListener(this);
-        //MinecraftForge.EVENT_BUS.unregister(this);
         setEnabled(false);
-        //if (HackManager.getHackByName("ToggleMsgs").isEnabled() && !this.name.equalsIgnoreCase("clickgui")) {
-            Command.sendClientSideMessage("Disabled " + Formatting.RED + this.name);
-        //}
-        //MinecraftForge.EVENT_BUS.unregister(this);
         onDisable();
     }
     public boolean isDrawn() {return drawn;}

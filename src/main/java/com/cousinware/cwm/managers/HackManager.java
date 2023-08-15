@@ -1,5 +1,7 @@
 package com.cousinware.cwm.managers;
 
+import com.cousinware.cwm.hack.client.ClickGuiHack;
+import com.cousinware.cwm.hack.client.Core;
 import com.cousinware.cwm.hack.exploit.Exploit;
 import com.cousinware.cwm.hack.Hack;
 import com.cousinware.cwm.hack.exploit.OutgoingPackets;
@@ -101,5 +103,7 @@ public class HackManager {
         hacks = new ArrayList<>();
         hacks.add(new Exploit());
         hacks.add(new OutgoingPackets());
+        hacks.add(new ClickGuiHack());
+        hacks.add(new Core());
     }
 }

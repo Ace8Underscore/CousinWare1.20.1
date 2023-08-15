@@ -1,7 +1,7 @@
 package com.cousinware.cwm.event;
 
 
-import net.minecraft.network.Packet;
+import net.minecraft.network.packet.Packet;
 
 public class PacketEvent extends EventCancellable {
 
@@ -21,7 +21,7 @@ public class PacketEvent extends EventCancellable {
     }
 
     public static class Receive extends PacketEvent {
-        public Receive(Packet packet) {
+        public Receive(Packet<?> packet) {
             super(packet);
         }
     }

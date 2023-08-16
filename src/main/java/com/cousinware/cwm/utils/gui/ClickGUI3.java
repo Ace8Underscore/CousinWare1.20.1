@@ -1,15 +1,11 @@
-package com.cousinware.cwm.gui;
+package com.cousinware.cwm.utils.gui;
 
 import com.cousinware.cwm.client.CwmClient;
-import com.cousinware.cwm.command.Command;
-import com.cousinware.cwm.event.KeyPressEvent;
 import com.cousinware.cwm.event.MouseEvent;
-import com.cousinware.cwm.gui.components.Button;
-import com.cousinware.cwm.gui.components.DoubleSlider;
-import com.cousinware.cwm.gui.components.Keybind;
 import com.cousinware.cwm.hack.Hack;
 import com.cousinware.cwm.hack.client.ClickGuiHack;
 import com.cousinware.cwm.hack.client.Core;
+import com.cousinware.cwm.utils.gui.components.Button;
 import me.zero.alpine.listener.Listener;
 import me.zero.alpine.listener.Subscribe;
 import net.minecraft.client.MinecraftClient;
@@ -18,10 +14,9 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 
 import java.awt.*;
-import java.io.IOException;
 import java.util.ArrayList;
 
-public class ClickGUI2 extends Screen
+public class ClickGUI3 extends Screen
 {
     public static ArrayList<Frame> frames;
     public static int color;
@@ -29,16 +24,16 @@ public class ClickGUI2 extends Screen
     int mouseY;
 
 
-    public ClickGUI2() {
-        super(Text.of("cousinware"));
-        CwmClient.EVENT_BUS.subscribeAll(mouseListener, keyListener);
+    public ClickGUI3() {
+        super(Text.of("cousinware2"));
+        CwmClient.EVENT_BUS.subscribe(mouseListener);
 
-        ClickGUI2.frames = new ArrayList<Frame>();
+        ClickGUI3.frames = new ArrayList<Frame>();
         int frameX = 5;
         for (final Hack.Category category : Hack.Category.values()) {
             final Frame frame = new Frame(category);
             frame.setX(frameX);
-            ClickGUI2.frames.add(frame);
+            ClickGUI3.frames.add(frame);
             frameX += frame.getWidth() + 10;
         }
 
@@ -46,12 +41,12 @@ public class ClickGUI2 extends Screen
 
     @Subscribe
     private Listener<MouseEvent> mouseListener = new Listener<>(event -> {
-        if (MinecraftClient.getInstance().currentScreen == CwmClient.clickGui2 && event.getAction() == 1) {
+        if (MinecraftClient.getInstance().currentScreen == CwmClient.clickGUI3 && event.getAction() == 1) {
             // Might bug out in the future. Possible itll turn on and off a bunch of times
             mouseClicked(mouseX, mouseY, event.getButton());
         }
-        if (MinecraftClient.getInstance().currentScreen == CwmClient.clickGui2 && event.getAction() == 0) {
-            for (final Frame frame : ClickGUI2.frames) {
+        if (MinecraftClient.getInstance().currentScreen == CwmClient.clickGUI3 && event.getAction() == 0) {
+            for (final Frame frame : ClickGUI3.frames) {
                 if (frame.isWithinHeader(mouseX, mouseY)) {
                     frame.setDrag(false);
                     frame.dragX = mouseX - frame.getX();
@@ -68,17 +63,6 @@ public class ClickGUI2 extends Screen
             }
     });
 
-    @Subscribe
-    private Listener<KeyPressEvent> keyListener = new Listener<>(event -> {
-        for (final Frame frame : ClickGUI2.frames) {
-            for (Component component : frame.getComponents()) {
-                    component.keyTyped('a', event.getKey());
-
-            }
-        }
-
-    });
-
 
     public void init() {
 
@@ -88,8 +72,8 @@ public class ClickGUI2 extends Screen
         this.mouseX = mouseX;
         this.mouseY = mouseY;
         context.fill(0, 0, context.getScaledWindowWidth(), context.getScaledWindowHeight(), new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(),ClickGuiHack.blue.getValInt(), ClickGuiHack.gradiant.getValInt()).getRGB());
-        ClickGUI2.color = new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(),ClickGuiHack.blue.getValInt(), ClickGuiHack.alpha.getValInt()).getRGB();
-        for (final Frame frame : ClickGUI2.frames) {
+        ClickGUI3.color = new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(),ClickGuiHack.blue.getValInt(), ClickGuiHack.alpha.getValInt()).getRGB();
+        for (final Frame frame : ClickGUI3.frames) {
             frame.renderFrame(context, this.textRenderer, mouseX, mouseY);
             frame.updatePosition(mouseX, mouseY);
             /*if (ClickGuiHack.ran)
@@ -128,7 +112,7 @@ public class ClickGUI2 extends Screen
             dWheel = 0;
 
         } */
-        for (final Frame frame : ClickGUI2.frames) {
+        for (final Frame frame : ClickGUI3.frames) {
             for (final Component component : frame.getComponents()) {
                 if (component instanceof Button) {
                     boolean isHovered = ((Button) component).isMouseOnButton(mouseX, mouseY);
@@ -147,7 +131,7 @@ public class ClickGUI2 extends Screen
 
 
     protected void mouseClicked(final int mouseX, final int mouseY, final int mouseButton) {
-        for (final Frame frame : ClickGUI2.frames) {
+        for (final Frame frame : ClickGUI3.frames) {
             if (frame.isWithinHeader(mouseX, mouseY) && mouseButton == 0) {
                 frame.setDrag(true);
                 frame.dragX = mouseX - frame.getX();
@@ -166,7 +150,7 @@ public class ClickGUI2 extends Screen
     }
 
     protected void keyTyped(final char typedChar, final int keyCode) {
-        for (final Frame frame : ClickGUI2.frames) {
+        for (final Frame frame : ClickGUI3.frames) {
             if (frame.isOpen() && keyCode != 1 && !frame.getComponents().isEmpty()) {
                 for (final Component component : frame.getComponents()) {
                     component.keyTyped(typedChar, keyCode);
@@ -180,10 +164,10 @@ public class ClickGUI2 extends Screen
     }
 
     protected void mouseReleased(final int mouseX, final int mouseY, final int state) {
-        for (final Frame frame : ClickGUI2.frames) {
+        for (final Frame frame : ClickGUI3.frames) {
             frame.setDrag(false);
         }
-        for (final Frame frame : ClickGUI2.frames) {
+        for (final Frame frame : ClickGUI3.frames) {
             if (frame.isOpen() && !frame.getComponents().isEmpty()) {
                 for (final Component component : frame.getComponents()) {
                     component.mouseReleased(mouseX, mouseY, state);
@@ -197,6 +181,6 @@ public class ClickGUI2 extends Screen
     }
     
     static {
-        ClickGUI2.color = -1;
+        ClickGUI3.color = -1;
     }
 }

@@ -43,11 +43,11 @@ public class ClickGuiHack extends Hack {
     }
 
     public static Setting customFont;
+    int delay = 0;
 
     @Override
     public void onEnable() {
         guiOpen = true;
-        mc.setScreenAndRender(CwmClient.clickGui2);
         try {
             if (CwmClient.fontRenderer.getFontName().equalsIgnoreCase("null")) {
                 CwmClient.fontRenderer.setFontName("Arial");
@@ -62,11 +62,16 @@ public class ClickGuiHack extends Hack {
         for (Frame frame : ClickGUI2.frames) {
             //frame.frameScramble();
         }
-        disable();
+        //disable();
     }
 
     public void onUpdate() {
-        //mc.setScreen(CwmClient.clickGui2);
+        delay++;
+        if (delay > 1) {
+            mc.setScreenAndRender(CwmClient.clickGui2);
+            delay = 0;
+            disable();
+        }
     }
 
 }

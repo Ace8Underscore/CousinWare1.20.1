@@ -1,10 +1,10 @@
-package com.cousinware.cwm.gui.components;
+package com.cousinware.cwm.utils.gui.components;
 
-import com.cousinware.cwm.gui.Component;
 import com.cousinware.cwm.hack.Hack;
 import com.cousinware.cwm.hack.client.ClickGuiHack;
 import com.cousinware.cwm.hack.client.Core;
 import com.cousinware.cwm.utils.Setting;
+import com.cousinware.cwm.utils.gui.Component;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.util.Formatting;

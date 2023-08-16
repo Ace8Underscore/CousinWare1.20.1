@@ -1,10 +1,11 @@
-package com.cousinware.cwm.gui;
+package com.cousinware.cwm.utils.gui;
 
-import com.cousinware.cwm.gui.components.Button;
 import com.cousinware.cwm.hack.Hack;
 import com.cousinware.cwm.hack.client.ClickGuiHack;
+import com.cousinware.cwm.hack.client.ClickGuiHack3;
 import com.cousinware.cwm.hack.client.Core;
 import com.cousinware.cwm.managers.HackManager;
+import com.cousinware.cwm.utils.gui.components.Button;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -48,7 +49,7 @@ public class Frame
     public Frame(final Hack.Category cat) {
         this.components = new ArrayList<Component>();
         this.category = cat;
-        this.width = 95;
+        this.width = 80;
         this.x = 5;
         this.y = 5;
         this.isScramble = false;
@@ -98,7 +99,9 @@ public class Frame
 
     public void renderFrame(DrawContext context, final TextRenderer textRenderer, final int mouseX, final int mouseY) {
         Color c = new Color(29, 37, 48, 255);
-        Color click = new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(), ClickGuiHack.blue.getValInt(), 255);
+        Color click = new Color(ClickGuiHack3.red.getValInt(), ClickGuiHack3.green.getValInt(), ClickGuiHack3.blue.getValInt(), 255);
+        Color click2 = new Color(ClickGuiHack3.red.getValInt(), ClickGuiHack3.green.getValInt(), ClickGuiHack3.blue.getValInt(), 125);
+
         this.mouseX = mouseX;
         this.mouseY = mouseY;
 
@@ -128,18 +131,25 @@ public class Frame
 
 
 
-        context.fill(this.x, this.y, this.x + 95, this.y + this.barHeight, c.getRGB());
+        context.drawHorizontalLine(this.x, this.x + 80, this.y, click.getRGB());
+        context.drawHorizontalLine(this.x, this.x + 80, this.y + this.barHeight, click.getRGB());
+        context.drawVerticalLine(this.x, this.y, this.y + this.barHeight, click.getRGB());
+        context.drawVerticalLine(this.x + 80, this.y, this.y + this.barHeight, click.getRGB());
         //final Color outline = new Color(10, 10, 10, 200);
         //Gui.drawRect(this.x - 2, this.y - 2, this.x + this.width + 2, this.y, outline.getRGB());
         //Gui.drawRect(this.x - 2, this.y, this.x, this.y + this.height + 2, outline.getRGB());
         //Gui.drawRect(this.x, this.y + this.height, this.x + this.width + 2, this.y + this.height + 2, outline.getRGB());
         //Gui.drawRect(this.x + this.width, this.y, this.x + this.width + 2, this.y + this.height, outline.getRGB());
-        context.fill(this.x, this.y + 17, this.x + 80 + 15,  this.y + 15, click.getRGB() );
+
+        //WERE USED BEFORE
+        //context.drawBorder(this.x, this.y, this.x + 95, this.y + this.barHeight, c.getRGB());
+        context.fill(this.x, this.y, this.x + 80,  this.y + 16, click2.getRGB());
         MinecraftClient mc = MinecraftClient.getInstance();
 
+
         //FontUtils.drawStringWithShadow(((ClickGuiModule) ModuleManager.getModuleByName("ClickGui")).customFont.getValue(), this.category.name(), this.x + 2, this.y + 3, -1);
-        if (!Core.customFont.getValBoolean()) context.drawCenteredTextWithShadow(MinecraftClient.getInstance().textRenderer, this.category.name(), (int) (this.x + 47.5), this.y + 3, -1);
-        else context.drawCenteredTextWithShadow(MinecraftClient.getInstance().textRenderer, this.category.name(), (int) (this.x + 47.5), this.y + 3, -1);
+        if (!Core.customFont.getValBoolean()) context.drawCenteredTextWithShadow(MinecraftClient.getInstance().textRenderer, this.category.name(), (int) (this.x + 40), this.y + 3, -1);
+        else context.drawCenteredTextWithShadow(MinecraftClient.getInstance().textRenderer, this.category.name(), (int) (this.x + 40), this.y + 3, -1);
         if (this.open && !this.components.isEmpty()) {
             for (final Component component : this.components) {
                 component.renderComponent(context);

@@ -54,6 +54,7 @@ public class Hack {
     }
 
     public void onUpdate(){}
+    public void onRender(){}
 
     public void doTick(){}
     protected void onEnable(){
@@ -91,13 +92,15 @@ public class Hack {
         anima = 0;
         setEnabled(true);
         //if (HackManager.getHackByName("ToggleMsgs").isEnabled() && !this.name.equalsIgnoreCase("clickgui")) {
-            //Command.sendClientSideMessage("Enabled " + Formatting.GREEN + this.name);
+            Command.sendClientSideMessage("Enabled " + Formatting.GREEN + this.name);
        // }
         //MinecraftForge.EVENT_BUS.register(this);
         onEnable();
     }
 
     public void disable() {
+        Command.sendClientSideMessage("Disabled " + Formatting.RED + this.name);
+
         setEnabled(false);
         onDisable();
     }

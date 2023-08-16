@@ -1,10 +1,12 @@
 package com.cousinware.cwm.managers;
 
 import com.cousinware.cwm.hack.client.ClickGuiHack;
+import com.cousinware.cwm.hack.client.ClickGuiHack3;
 import com.cousinware.cwm.hack.client.Core;
 import com.cousinware.cwm.hack.exploit.Exploit;
 import com.cousinware.cwm.hack.Hack;
 import com.cousinware.cwm.hack.exploit.OutgoingPackets;
+import com.cousinware.cwm.hack.render.Welcomer;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -32,6 +34,10 @@ public class HackManager {
 
     public static void onUpdate() {
         hacks.stream().filter(Hack::isEnabled).forEach(Hack::onUpdate);
+    }
+
+    public static void onRender() {
+        hacks.stream().filter(Hack::isEnabled).forEach(Hack::onRender);
     }
     public static void doTick() {
         hacks.stream().filter(Hack::isEnabled).forEach(Hack::doTick);
@@ -105,5 +111,8 @@ public class HackManager {
         hacks.add(new OutgoingPackets());
         hacks.add(new ClickGuiHack());
         hacks.add(new Core());
+        hacks.add(new Welcomer());
+        hacks.add(new com.cousinware.cwm.hack.render.ArrayList());
+        hacks.add(new ClickGuiHack3());
     }
 }

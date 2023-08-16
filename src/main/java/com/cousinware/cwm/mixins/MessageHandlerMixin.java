@@ -21,10 +21,5 @@ import java.time.Instant;
 
 public abstract class MessageHandlerMixin {
 
-    @Inject(at = @At("HEAD"), method = "onChatMessage")
-    public void onChatMessage(SignedMessage message, GameProfile sender, MessageType.Parameters params, CallbackInfo ci) {
-        //Command.sendClientSideMessage("Message just sent");
-        //MinecraftClient.getInstance().player.sendMessage(Text.of("1"));
-        //CwmClient.chatManager.doChat(message, info);
-    }
+
 }

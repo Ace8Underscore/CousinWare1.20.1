@@ -5,10 +5,14 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "ClientConnectionMixin",
+    "KeyboardMixin",
     "MessageHandlerMixin",
-    "MinecraftClientMixin"
+    "MinecraftClientMixin",
+    "InGameHudMixin"
   ],
   "client": [
+    "MixinWorldRenderer",
+    "MouseMixin"
   ],
   "injectors": {
     "defaultRequire": 1

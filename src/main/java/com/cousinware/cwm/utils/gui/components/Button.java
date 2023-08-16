@@ -1,22 +1,16 @@
-package com.cousinware.cwm.gui.components;
+package com.cousinware.cwm.utils.gui.components;
 
 import com.cousinware.cwm.client.CwmClient;
-import com.cousinware.cwm.command.Command;
-import com.cousinware.cwm.gui.Component;
-import com.cousinware.cwm.gui.Frame;
+import com.cousinware.cwm.hack.client.ClickGuiHack3;
 import com.cousinware.cwm.hack.Hack;
-import com.cousinware.cwm.hack.client.ClickGuiHack;
 import com.cousinware.cwm.hack.client.Core;
 import com.cousinware.cwm.utils.Setting;
-import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.systems.RenderSystem;
+import com.cousinware.cwm.utils.gui.Component;
+import com.cousinware.cwm.utils.gui.Frame;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.sound.SoundEvents;
-import org.lwjgl.opengl.GL11;
 
-
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -85,19 +79,25 @@ public class Button extends Component
     @Override
     public void renderComponent(DrawContext context) {
 
-        Color c = new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(), ClickGuiHack.blue.getValInt(), 255);
-        context.fill(this.parent.getX(), this.parent.getY() + this.offset + 1, this.parent.getX() + this.parent.getWidth(), this.parent.getY() + 16 + this.offset, this.isHovered ? (this.hack.isEnabled() ? new Color(29, 37,48, ClickGuiHack.alpha.getValInt()).getRGB() : new Color(29, 37, 48, ClickGuiHack.alpha.getValInt()).darker().darker().getRGB()) : (this.hack.isEnabled() ? new Color(29, 37,48, ClickGuiHack.alpha.getValInt()).getRGB() : new Color(29, 37, 48, ClickGuiHack.alpha.getValInt()).getRGB()));
-        context.fill(this.parent.getX(), this.parent.getY() + this.offset, this.parent.getX() + this.parent.getWidth(), this.parent.getY() + this.offset + 1, new Color(29, 37, 48, ClickGuiHack.alpha.getValInt()).getRGB());
+        Color click2 = new Color(ClickGuiHack3.red.getValInt(), ClickGuiHack3.green.getValInt(), ClickGuiHack3.blue.getValInt(), 125);
+        Color c = new Color(ClickGuiHack3.red.getValInt(), ClickGuiHack3.green.getValInt(), ClickGuiHack3.blue.getValInt(), 255);
+        context.fill(this.parent.getX(), this.parent.getY() + this.offset + 1, this.parent.getX() + this.parent.getWidth(), this.parent.getY() + 16 + this.offset, this.isHovered ? (this.hack.isEnabled() ? click2.getRGB() : click2.darker().darker().getRGB()) : (this.hack.isEnabled() ? click2.getRGB() : click2.getRGB()));
+        //context.drawHorizontalLine(this.parent.getX(), this.parent.getX() + this.parent.getWidth(), this.parent.getY() + this.offset + 1, c.getRGB());
+        context.drawHorizontalLine(this.parent.getX(), this.parent.getX() + this.parent.getWidth(), this.parent.getY() + this.offset + 16, c.getRGB());
+        context.drawVerticalLine(this.parent.getX(), this.parent.getY() + this.offset, this.parent.getY() + this.offset + 16, c.getRGB());
+        context.drawVerticalLine(this.parent.getX() + this.parent.getWidth(), this.parent.getY() + this.offset, this.parent.getY() + this.offset + 16, c.getRGB());
+
+        //context.fill(this.parent.getX(), this.parent.getY() + this.offset, this.parent.getX() + this.parent.getWidth(), this.parent.getY() + this.offset + 1, new Color(29, 37, 48, ClickGuiHack3.alpha.getValInt()).getRGB());
         //FontUtils.drawStringWithShadow(((ClickGuiModule) ModuleManager.getModuleByName("ClickGui")).customFont.getValInt(), this.mod.getName(), this.parent.getX() + 2, this.parent.getY() + this.offset + 2 + 2, -1);
 
         if (!Core.customFont.getValBoolean()) {
             if (this.hack.isEnabled())
-                context.drawTextWithShadow(MinecraftClient.getInstance().textRenderer, this.hack.getName(), this.parent.getX() + 2, this.parent.getY() + this.offset + 2 + 2, c.getRGB());
+                context.drawTextWithShadow(MinecraftClient.getInstance().textRenderer, this.hack.getName(), this.parent.getX() + 2, this.parent.getY() + this.offset + 2 + 2, c.brighter().getRGB());
             else
                 context.drawTextWithShadow(MinecraftClient.getInstance().textRenderer,this.hack.getName(), this.parent.getX() + 2, this.parent.getY() + this.offset + 2 + 2, -1);
         } else {
             if (this.hack.isEnabled())
-                context.drawTextWithShadow(MinecraftClient.getInstance().textRenderer,this.hack.getName(), this.parent.getX() + 2, this.parent.getY() + this.offset + 2 + 2, c.getRGB());
+                context.drawTextWithShadow(MinecraftClient.getInstance().textRenderer,this.hack.getName(), this.parent.getX() + 2, this.parent.getY() + this.offset + 2 + 2, c.brighter().getRGB());
             else
                 context.drawTextWithShadow(MinecraftClient.getInstance().textRenderer,this.hack.getName(), this.parent.getX() + 2, this.parent.getY() + this.offset + 2 + 2, -1);
 
@@ -116,7 +116,7 @@ public class Button extends Component
         if (this.open && !this.subcomponents.isEmpty()) {
             for (final Component comp : this.subcomponents) {
                 comp.renderComponent(context);
-                //Gui.drawRect(this.parent.getX(), this.parent.getY() + this.offset + 1, this.parent.getX() + 1, this.parent.getY() + this.offset + 16, new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(), ClickGuiHack.blue.getValInt(), ClickGuiHack.alpha.getValInt()).getRGB());
+                //Gui.drawRect(this.parent.getX(), this.parent.getY() + this.offset + 1, this.parent.getX() + 1, this.parent.getY() + this.offset + 16, new Color(ClickGuiHack3.red.getValInt(), ClickGuiHack3.green.getValInt(), ClickGuiHack3.blue.getValInt(), ClickGuiHack3.alpha.getValInt()).getRGB());
             }
         }
     }
@@ -137,7 +137,7 @@ public class Button extends Component
                 comp.updateComponent(mouseX, mouseY);
             }
         }
-        if (this.isHovered && ClickGuiHack.descriptions.getValBoolean()) {
+        if (this.isHovered && ClickGuiHack3.descriptions.getValBoolean()) {
            // if (!Core.customFont.getValBoolean()) mc.fontRenderer.drawStringWithShadow(this.hack.getDescription(), mouseX + 12, mouseY + 4, -1);
            // else CousinWare.INSTANCE.fontRenderer.drawStringWithShadow(this.hack.getDescription(), mouseX + 12, mouseY + 4, -1);
 
@@ -149,7 +149,7 @@ public class Button extends Component
         //Command.sendClientSideMessage(String.valueOf(button));
         if (this.isMouseOnButton(mouseX, mouseY) && button == 0) {
             this.hack.toggle();
-            if (ClickGuiHack.noise.getValBoolean()) {
+            if (ClickGuiHack3.noise.getValBoolean()) {
                 MinecraftClient.getInstance().player.playSound(SoundEvents.UI_BUTTON_CLICK.value(), 2f, 1f);
             }
         }

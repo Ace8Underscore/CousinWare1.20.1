@@ -31,14 +31,14 @@ public class CheckBox extends Component
     public void renderComponent(DrawContext context) {
         Color click = new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(), ClickGuiHack.blue.getValInt(), 255);
 
-        context.drawBorder(this.parent.parent.getX(), this.parent.parent.getY() + this.offset + 1, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 16, this.hovered ? (this.op.getValBoolean() ?
+        context.fill(this.parent.parent.getX(), this.parent.parent.getY() + this.offset + 1, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 16, this.hovered ? (this.op.getValBoolean() ?
                 new Color(29, 37,48, ClickGuiHack.alpha.getValInt()).getRGB() :
                 new Color(29, 37, 48, ClickGuiHack.alpha.getValInt()).darker().getRGB()) : (this.op.getValBoolean() ?
                 new Color(29, 37, 48, ClickGuiHack.alpha.getValInt()).getRGB() :
                 new Color(29, 37, 48, ClickGuiHack.alpha.getValInt()).getRGB()));
-        context.drawBorder(this.parent.parent.getX(), this.parent.parent.getY() + this.offset, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 1, new Color(29, 37, 48, ClickGuiHack.alpha.getValInt()).getRGB());
+        context.fill(this.parent.parent.getX(), this.parent.parent.getY() + this.offset, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 1, new Color(29, 37, 48, ClickGuiHack.alpha.getValInt()).getRGB());
         //FontUtils.drawStringWithShadow(((ClickGuiModule) ModuleManager.getModuleByName("ClickGui")).customFont.getValInt(), this.op.getName(), this.parent.parent.getX() + 2, this.parent.parent.getY() + this.offset + 4, -1);
-        context.drawBorder(this.parent.parent.getX(), this.parent.parent.getY() + this.offset, this.parent.parent.getX() + 1, this.parent.parent.getY() + this.offset + 16, new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(), ClickGuiHack.blue.getValInt(), 255).getRGB());
+        context.fill(this.parent.parent.getX(), this.parent.parent.getY() + this.offset, this.parent.parent.getX() + 1, this.parent.parent.getY() + this.offset + 16, new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(), ClickGuiHack.blue.getValInt(), 255).getRGB());
 
         if (!Core.customFont.getValBoolean()) context.drawCenteredTextWithShadow(MinecraftClient.getInstance().textRenderer,this.op.getDisplayName(), (int) (this.parent.parent.getX() + 47.5), this.parent.parent.getY() + this.offset + 4, -1);
         else context.drawCenteredTextWithShadow(MinecraftClient.getInstance().textRenderer,this.op.getDisplayName(), (int) (this.parent.parent.getX() + 47.5), this.parent.parent.getY() + this.offset + 4, -1);

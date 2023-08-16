@@ -1,8 +1,7 @@
 package com.cousinware.cwm.managers;
 
 import com.cousinware.cwm.command.Command;
-import com.cousinware.cwm.command.commands.Set;
-import com.cousinware.cwm.command.commands.Toggle;
+import com.cousinware.cwm.command.commands.*;
 import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
@@ -47,6 +46,13 @@ public class CommandManager {
         commands = new ArrayList<>();
         commands.add(new Set());
         commands.add(new Toggle());
+        commands.add(new Bind());
+        commands.add(new Friend());
+        commands.add(new Drawn());
+        commands.add(new AllCommands());
+        commands.add(new FriendList());
+        commands.add(new Prefix());
+        commands.add(new Help());
     }
 
 }

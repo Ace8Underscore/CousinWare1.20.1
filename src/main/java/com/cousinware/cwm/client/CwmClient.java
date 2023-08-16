@@ -5,6 +5,7 @@ import com.cousinware.cwm.managers.*;
 import com.cousinware.cwm.utils.config.ConfigUtils;
 import com.cousinware.cwm.utils.config.ShutDown;
 import com.cousinware.cwm.utils.font.CFontRenderer;
+import com.cousinware.cwm.utils.gui.ClickGUI3;
 import me.zero.alpine.bus.EventBus;
 import me.zero.alpine.bus.EventManager;
 import me.zero.alpine.listener.Subscriber;
@@ -27,12 +28,15 @@ public class CwmClient implements ClientModInitializer {
     public static SettingsManager settingsManager;
     public FriendManager friendManager;
     public static ClickGUI2 clickGui2;
+    public static ClickGUI3 clickGUI3;
     public static CFontRenderer fontRenderer;
     public static ConfigUtils configUtils;
+    public static KeyboardManager keyboardManager;
 
 
     @Override
     public void onInitializeClient() {
+        keyboardManager = new KeyboardManager();
         settingsManager = new SettingsManager();
         friendManager = new FriendManager();
         chatManager = new ChatManager();
@@ -40,6 +44,7 @@ public class CwmClient implements ClientModInitializer {
         commandManager = new CommandManager();
         fontRenderer = new CFontRenderer(new Font("Verdana", Font.PLAIN, 17), true, false);
         clickGui2 = new ClickGUI2();
+        clickGUI3 = new ClickGUI3();
         configUtils = new ConfigUtils();
 
         Runtime.getRuntime().addShutdownHook(new ShutDown());

@@ -1,7 +1,9 @@
 package com.cousinware.cwm.utils.gui;
 
 import com.cousinware.cwm.client.CwmClient;
+import com.cousinware.cwm.event.KeyPressEvent;
 import com.cousinware.cwm.event.MouseEvent;
+import com.cousinware.cwm.gui.ClickGUI2;
 import com.cousinware.cwm.hack.Hack;
 import com.cousinware.cwm.hack.client.ClickGuiHack;
 import com.cousinware.cwm.hack.client.Core;
@@ -26,7 +28,7 @@ public class ClickGUI3 extends Screen
 
     public ClickGUI3() {
         super(Text.of("cousinware2"));
-        CwmClient.EVENT_BUS.subscribe(mouseListener);
+        CwmClient.EVENT_BUS.subscribeAll(mouseListener, keyListener);
 
         ClickGUI3.frames = new ArrayList<Frame>();
         int frameX = 5;
@@ -61,6 +63,17 @@ public class ClickGUI3 extends Screen
 
 
             }
+    });
+
+    @Subscribe
+    private Listener<KeyPressEvent> keyListener = new Listener<>(event -> {
+        for (final Frame frame : ClickGUI3.frames) {
+            for (Component component : frame.getComponents()) {
+                component.keyTyped('a', event.getKey());
+
+            }
+        }
+
     });
 
 

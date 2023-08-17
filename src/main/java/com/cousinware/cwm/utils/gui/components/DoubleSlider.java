@@ -1,6 +1,7 @@
 package com.cousinware.cwm.utils.gui.components;
 
 import com.cousinware.cwm.hack.client.ClickGuiHack;
+import com.cousinware.cwm.hack.client.ClickGuiHack3;
 import com.cousinware.cwm.hack.client.Core;
 import com.cousinware.cwm.utils.Setting;
 import com.cousinware.cwm.utils.gui.Component;
@@ -34,12 +35,18 @@ public class DoubleSlider extends Component
     
     @Override
     public void renderComponent(DrawContext context) {
-        context.fill(this.parent.parent.getX(), this.parent.parent.getY() + this.offset + 1, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 16, this.hovered ? new Color(29, 37, 48, ClickGuiHack.alpha.getValInt()).darker().getRGB() : new Color(29, 37, 48, ClickGuiHack.alpha.getValInt()).getRGB());
+        Color click = new Color(ClickGuiHack3.red.getValInt(), ClickGuiHack3.green.getValInt(), ClickGuiHack3.blue.getValInt(), 255);
+        Color click2 = new Color(ClickGuiHack3.red.getValInt(), ClickGuiHack3.green.getValInt(), ClickGuiHack3.blue.getValInt(), 100);
+
+        context.fill(this.parent.parent.getX(), this.parent.parent.getY() + this.offset + 1, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 16, this.hovered ? click2.darker().darker().getRGB() : click2.darker().getRGB());
         final int drag = (int)(this.set.getValDouble() / this.set.getMax() * this.parent.parent.getWidth() + 15);
-        context.fill(this.parent.parent.getX(), this.parent.parent.getY() + this.offset + 15, this.parent.parent.getX() + (int)this.renderWidth, this.parent.parent.getY() + this.offset + 16, this.hovered ?new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(),ClickGuiHack.blue.getValInt(), 255).getRGB() : new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(),ClickGuiHack.blue.getValInt(), 255).getRGB());
-        context.fill(this.parent.parent.getX(), this.parent.parent.getY() + this.offset, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 1, new Color(29, 37, 48, ClickGuiHack.alpha.getValInt()).getRGB());
+        context.fill(this.parent.parent.getX(), this.parent.parent.getY() + this.offset + 14, this.parent.parent.getX() + (int)this.renderWidth, this.parent.parent.getY() + this.offset + 16, this.hovered ?click.brighter().brighter().getRGB() : click.brighter().getRGB());
+        context.fill(this.parent.parent.getX(), this.parent.parent.getY() + this.offset, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 1, click2.darker().getRGB());
         //FontUtils.drawStringWithShadow(((ClickGuiModule) ModuleManager.getModuleByName("ClickGui")).customFont.getValue(), this.set.getName() + " " + ChatFormatting.GRAY + this.set.getValue(), (int)(this.parent.parent.getX() + 2), this.parent.parent.getY() + this.offset + 4, -1);
-        context.fill(this.parent.parent.getX(), this.parent.parent.getY() + this.offset, this.parent.parent.getX() + 1, this.parent.parent.getY() + this.offset + 16, new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(), ClickGuiHack.blue.getValInt(), 255).getRGB());
+        //context.fill(this.parent.parent.getX(), this.parent.parent.getY() + this.offset, this.parent.parent.getX() + 1, this.parent.parent.getY() + this.offset + 16, new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(), ClickGuiHack.blue.getValInt(), 255).getRGB());
+        context.drawVerticalLine(this.parent.parent.getX(), this.parent.parent.getY() + this.offset -1, this.parent.parent.getY() + this.offset + 16, click.brighter().getRGB());
+        context.drawVerticalLine(this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset -1, this.parent.parent.getY() + this.offset + 16, click.brighter().getRGB());
+
 
 
         if (!Core.customFont.getValBoolean()) context.drawTextWithShadow(MinecraftClient.getInstance().textRenderer,this.set.getDisplayName(), (int)(this.parent.parent.getX() + 2), this.parent.parent.getY() + this.offset + 4, -1);
@@ -63,7 +70,7 @@ public class DoubleSlider extends Component
         final double diff = Math.min(88, Math.max(0, mouseX - this.x));
         final double min = this.set.getMin();
         final double max = this.set.getMax();
-        this.renderWidth = 95 * (this.set.getValDouble() - min) / (max - min);
+        this.renderWidth = 80 * (this.set.getValDouble() - min) / (max - min);
         if (this.dragging) {
             if (diff == 0.0) {
                 this.set.setValDouble(this.set.getMin());

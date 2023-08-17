@@ -2,6 +2,7 @@ package com.cousinware.cwm.utils.config;
 
 import com.cousinware.cwm.client.CwmClient;
 import com.cousinware.cwm.command.Command;
+import com.cousinware.cwm.command.commands.Bind;
 import com.cousinware.cwm.hack.Hack;
 import com.cousinware.cwm.managers.FriendManager;
 import com.cousinware.cwm.managers.HackManager;
@@ -26,12 +27,12 @@ public class ConfigUtils {
      **/
 
     public ConfigUtils() {
-        this.Nord = new File(mc.runDirectory + File.separator + "CousinWare");
+        this.Nord = new File(mc.runDirectory + File.separator + "CousinWare_Modern");
         if (!this.Nord.exists()) {
             this.Nord.mkdirs();
         }
 
-        this.Settings = new File(mc.runDirectory + File.separator + "CousinWare" + File.separator + "Settings");
+        this.Settings = new File(mc.runDirectory + File.separator + "CousinWare_Modern" + File.separator + "Settings");
         if (!this.Settings.exists()) {
             this.Settings.mkdirs();
         }
@@ -59,7 +60,7 @@ public class ConfigUtils {
 
             while (var3.hasNext()) {
                 Hack hack = (Hack) var3.next();
-                out.write(hack.getName() + ":" + GLFW.glfwGetKeyName(hack.getBind(), -1));
+                out.write(hack.getName() + ":" + hack.getBind());
                 out.write("\r\n");
             }
 
@@ -83,7 +84,8 @@ public class ConfigUtils {
                 String bind = curLine.split(":")[1];
                 for (Hack h : HackManager.getHacks()) {
                     if (h != null && h.getName().equalsIgnoreCase(name)) {
-                       // h.setBind(Keyboard.getKeyIndex(bind));
+                        h.setBind(Integer.parseInt(bind));
+
 
                     }
                 }
@@ -92,7 +94,7 @@ public class ConfigUtils {
             br.close();
         } catch (Exception var11) {
             var11.printStackTrace();
-            //saveBinds();
+            saveBinds();
         }
 
     }

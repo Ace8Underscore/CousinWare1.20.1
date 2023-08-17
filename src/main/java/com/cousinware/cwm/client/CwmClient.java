@@ -37,11 +37,11 @@ public class CwmClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         keyboardManager = new KeyboardManager();
+        commandManager = new CommandManager();
         settingsManager = new SettingsManager();
         friendManager = new FriendManager();
         chatManager = new ChatManager();
         hackManager = new HackManager();
-        commandManager = new CommandManager();
         fontRenderer = new CFontRenderer(new Font("Verdana", Font.PLAIN, 17), true, false);
         clickGui2 = new ClickGUI2();
         clickGUI3 = new ClickGUI3();

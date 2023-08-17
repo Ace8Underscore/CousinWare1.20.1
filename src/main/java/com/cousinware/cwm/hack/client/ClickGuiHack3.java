@@ -46,7 +46,6 @@ public class ClickGuiHack3 extends Hack {
     @Override
     public void onEnable() {
         guiOpen = true;
-        this.bind = GLFW.GLFW_KEY_O;
         try {
             if (CwmClient.fontRenderer.getFontName().equalsIgnoreCase("null")) {
                 CwmClient.fontRenderer.setFontName("Arial");

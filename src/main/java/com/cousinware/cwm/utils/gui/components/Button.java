@@ -79,7 +79,7 @@ public class Button extends Component
     @Override
     public void renderComponent(DrawContext context) {
 
-        Color click2 = new Color(ClickGuiHack3.red.getValInt(), ClickGuiHack3.green.getValInt(), ClickGuiHack3.blue.getValInt(), 125);
+        Color click2 = new Color(ClickGuiHack3.red.getValInt(), ClickGuiHack3.green.getValInt(), ClickGuiHack3.blue.getValInt(), 100);
         Color c = new Color(ClickGuiHack3.red.getValInt(), ClickGuiHack3.green.getValInt(), ClickGuiHack3.blue.getValInt(), 255);
         context.fill(this.parent.getX(), this.parent.getY() + this.offset + 1, this.parent.getX() + this.parent.getWidth(), this.parent.getY() + 16 + this.offset, this.isHovered ? (this.hack.isEnabled() ? click2.getRGB() : click2.darker().darker().getRGB()) : (this.hack.isEnabled() ? click2.getRGB() : click2.getRGB()));
         //context.drawHorizontalLine(this.parent.getX(), this.parent.getX() + this.parent.getWidth(), this.parent.getY() + this.offset + 1, c.getRGB());

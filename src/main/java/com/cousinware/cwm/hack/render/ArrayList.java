@@ -1,14 +1,14 @@
 package com.cousinware.cwm.hack.render;
 
 import com.cousinware.cwm.client.CwmClient;
+import com.cousinware.cwm.event.MouseEvent;
 import com.cousinware.cwm.event.RenderOverlayEvent;
 import com.cousinware.cwm.hack.Hack;
 import com.cousinware.cwm.hack.client.Core;
 import com.cousinware.cwm.managers.HackManager;
 import com.cousinware.cwm.utils.RainbowUtil;
 import com.cousinware.cwm.utils.Setting;
-import me.zero.alpine.listener.Listener;
-import me.zero.alpine.listener.Subscribe;
+import com.google.common.eventbus.Subscribe;
 import net.minecraft.util.Formatting;
 
 import java.awt.*;
@@ -66,7 +66,7 @@ public class ArrayList extends Hack {
     }
 
     @Subscribe
-    private final Listener<RenderOverlayEvent> listener = new Listener<>(event -> {
+    public void renderOverlayListener(RenderOverlayEvent event) {
         if (mc.world == null)
             return;
         hackCount = 0;
@@ -211,15 +211,15 @@ public class ArrayList extends Hack {
                 });
 
 
-    });
+    }
 
     public void onEnable() {
-        CwmClient.EVENT_BUS.subscribe(listener);
+        CwmClient.EVENT_BUS.register(this);
 
     }
 
     public void onDisable() {
-        CwmClient.EVENT_BUS.unsubscribe(listener);
+        CwmClient.EVENT_BUS.register(this);
 
     }
 

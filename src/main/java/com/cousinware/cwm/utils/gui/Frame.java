@@ -146,15 +146,17 @@ public class Frame
         context.fill(this.x, this.y, this.x + 80,  this.y + 16, click2.getRGB());
         MinecraftClient mc = MinecraftClient.getInstance();
 
-
+        context.getMatrices().push();
         //FontUtils.drawStringWithShadow(((ClickGuiModule) ModuleManager.getModuleByName("ClickGui")).customFont.getValue(), this.category.name(), this.x + 2, this.y + 3, -1);
         if (!Core.customFont.getValBoolean()) context.drawCenteredTextWithShadow(MinecraftClient.getInstance().textRenderer, this.category.name(), (int) (this.x + 40), this.y + 3, -1);
         else context.drawCenteredTextWithShadow(MinecraftClient.getInstance().textRenderer, this.category.name(), (int) (this.x + 40), this.y + 3, -1);
+        context.getMatrices().pop();
         if (this.open && !this.components.isEmpty()) {
             for (final Component component : this.components) {
                 component.renderComponent(context);
             }
         }
+
     }
 
     public void refresh() {

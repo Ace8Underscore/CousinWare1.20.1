@@ -1,8 +1,7 @@
 package com.cousinware.cwm.event;
 
-import me.zero.alpine.event.CancellableEvent;
 
-public class KeyPressEvent extends CancellableEvent {
+public class KeyPressEvent extends EventCancellable {
 
     public int key;
 

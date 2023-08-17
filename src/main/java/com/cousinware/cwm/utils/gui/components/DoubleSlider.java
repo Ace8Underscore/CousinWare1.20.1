@@ -4,6 +4,7 @@ import com.cousinware.cwm.hack.client.ClickGuiHack;
 import com.cousinware.cwm.hack.client.ClickGuiHack3;
 import com.cousinware.cwm.hack.client.Core;
 import com.cousinware.cwm.utils.Setting;
+import com.cousinware.cwm.utils.font.FontRenderUtil;
 import com.cousinware.cwm.utils.gui.Component;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
@@ -52,7 +53,7 @@ public class DoubleSlider extends Component
         if (!Core.customFont.getValBoolean()) context.drawTextWithShadow(MinecraftClient.getInstance().textRenderer,this.set.getDisplayName(), (int)(this.parent.parent.getX() + 2), this.parent.parent.getY() + this.offset + 4, -1);
         else context.drawTextWithShadow(MinecraftClient.getInstance().textRenderer,this.set.getDisplayName(), (int)(this.parent.parent.getX() + 2), this.parent.parent.getY() + this.offset + 4, -1);
 
-        if (!Core.customFont.getValBoolean()) context.drawTextWithShadow(MinecraftClient.getInstance().textRenderer,Formatting.GRAY + String.valueOf(this.set.getValDouble()), (int)(this.parent.parent.getX() + 75), this.parent.parent.getY() + this.offset + 4, -1);
+        if (!Core.customFont.getValBoolean()) FontRenderUtil.drawLeftStringWithShadow(context,Formatting.GRAY + String.valueOf(this.set.getValDouble()), (int)(this.parent.parent.getX() + 78), this.parent.parent.getY() + this.offset + 4, -1);
         else context.drawTextWithShadow(MinecraftClient.getInstance().textRenderer, Formatting.GRAY + String.valueOf(this.set.getValDouble()), (int)(this.parent.parent.getX() + 75), this.parent.parent.getY() + this.offset + 4, -1);
 
     }

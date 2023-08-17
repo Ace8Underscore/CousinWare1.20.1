@@ -2,10 +2,8 @@ package com.cousinware.cwm.managers;
 
 import com.cousinware.cwm.client.CwmClient;
 import com.cousinware.cwm.command.Command;
+import com.cousinware.cwm.event.MouseEvent;
 import com.cousinware.cwm.event.PacketEvent;
-import me.zero.alpine.listener.Listener;
-import me.zero.alpine.listener.Subscribe;
-import me.zero.alpine.listener.Subscriber;
 import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import net.minecraft.network.packet.s2c.play.ChatMessageS2CPacket;
 import net.minecraft.util.Formatting;
@@ -14,11 +12,12 @@ import net.minecraft.util.Formatting;
 public class ChatManager {
 
     public ChatManager() {
-        CwmClient.EVENT_BUS.subscribe(stringListener);
+        CwmClient.EVENT_BUS.register(this);
     }
 
-    @Subscribe
-    private Listener<PacketEvent.Send> stringListener = new Listener<>(event -> {
+
+    @com.google.common.eventbus.Subscribe
+    public void packetListener(PacketEvent.Send event) {
 
         String message = "";
 
@@ -36,7 +35,7 @@ public class ChatManager {
         }
 
 
-    });
+    }
 
 
 }

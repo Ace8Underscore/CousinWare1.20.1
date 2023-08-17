@@ -6,6 +6,7 @@ import net.minecraft.client.Keyboard;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Keyboard.class)
@@ -17,7 +18,7 @@ public class KeyboardMixin {
             KeyPressEvent event = new KeyPressEvent(key, scanCode, action, modifiers);
             CwmClient.EVENT_BUS.post(event);
 
-            if (event.isCancelled()) {
+            if (event.isCanceled()) {
                 callbackInfo.cancel();
             }
         }

@@ -24,7 +24,7 @@ public class ClickGuiHack3 extends Hack {
 
     public ClickGuiHack3() {
         super("ClickGUI3", Category.CLIENT, "Opens the ClickGUI", 12126976);
-        setBind(GLFW.GLFW_KEY_P);
+        setBind(GLFW.GLFW_KEY_Y);
         INSTANCE = this;
 
 
@@ -45,7 +45,6 @@ public class ClickGuiHack3 extends Hack {
 
     @Override
     public void onEnable() {
-        guiOpen = true;
         try {
             if (CwmClient.fontRenderer.getFontName().equalsIgnoreCase("null")) {
                 CwmClient.fontRenderer.setFontName("Arial");
@@ -67,10 +66,13 @@ public class ClickGuiHack3 extends Hack {
         delay++;
         if (delay > 1) {
             mc.setScreenAndRender(CwmClient.clickGUI3);
+            guiOpen = true;
             delay = 0;
             disable();
         }
+
     }
+
 
 }
 

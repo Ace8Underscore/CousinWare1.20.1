@@ -2,6 +2,7 @@ package com.cousinware.cwm.utils.gui.components;
 
 import com.cousinware.cwm.hack.Hack;
 import com.cousinware.cwm.hack.client.ClickGuiHack;
+import com.cousinware.cwm.hack.client.ClickGuiHack3;
 import com.cousinware.cwm.hack.client.Core;
 import com.cousinware.cwm.utils.Setting;
 import com.cousinware.cwm.utils.gui.Component;
@@ -40,12 +41,17 @@ public class ModeButton extends Component
     
     @Override
     public void renderComponent(DrawContext context) {
-        context.fill(this.parent.parent.getX(), this.parent.parent.getY() + this.offset + 1, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 16, this.hovered ? new Color(29, 37, 48, ClickGuiHack.alpha.getValInt()).darker().darker().getRGB() : new Color(29, 37, 48, ClickGuiHack.alpha.getValInt()).getRGB());
-        context.fill(this.parent.parent.getX(), this.parent.parent.getY() + this.offset, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 1, new Color(29, 37, 48, ClickGuiHack.alpha.getValInt()).getRGB());
-        context.fill(this.parent.parent.getX(), this.parent.parent.getY() + this.offset, this.parent.parent.getX() + 1, this.parent.parent.getY() + this.offset + 16, new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(), ClickGuiHack.blue.getValInt(), 255).getRGB());
+        Color click = new Color(ClickGuiHack3.red.getValInt(), ClickGuiHack3.green.getValInt(), ClickGuiHack3.blue.getValInt(), 255);
+        Color click2 = new Color(ClickGuiHack3.red.getValInt(), ClickGuiHack3.green.getValInt(), ClickGuiHack3.blue.getValInt(), 100);
+        context.fill(this.parent.parent.getX(), this.parent.parent.getY() + this.offset + 1, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 16, this.hovered ? click2.darker().darker().getRGB() : click2.darker().getRGB());
+        context.fill(this.parent.parent.getX(), this.parent.parent.getY() + this.offset, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 1, click2.darker().getRGB());
+        //context.fill(this.parent.parent.getX(), this.parent.parent.getY() + this.offset, this.parent.parent.getX() + 1, this.parent.parent.getY() + this.offset + 16, new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(), ClickGuiHack.blue.getValInt(), 255).getRGB());
+        context.drawVerticalLine(this.parent.parent.getX(), this.parent.parent.getY() + this.offset - 1, this.parent.parent.getY() + this.offset + 16, click.brighter().getRGB());
+        context.drawVerticalLine(this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset - 1, this.parent.parent.getY() + this.offset + 16, click.brighter().getRGB());
+
         //FontUtils.drawStringWithShadow(((ClickGuiModule) ModuleManager.getModuleByName("ClickGui")).customFont.getValue(), this.set.getName() + " " + ChatFormatting.GRAY + this.set.getValue(), this.parent.parent.getX() + 2, this.parent.parent.getY() + this.offset + 4, -1);
-        if (!Core.customFont.getValBoolean()) context.drawCenteredTextWithShadow(MinecraftClient.getInstance().textRenderer,this.set.getDisplayName() + " " + Formatting.GRAY + this.set.getValString(), this.parent.parent.getX() + 2, this.parent.parent.getY() + this.offset + 4, -1);
-        else context.drawCenteredTextWithShadow(MinecraftClient.getInstance().textRenderer,this.set.getDisplayName() + " " + Formatting.GRAY + this.set.getValString(), this.parent.parent.getX() + 2, this.parent.parent.getY() + this.offset + 4, -1);
+        if (!Core.customFont.getValBoolean()) context.drawTextWithShadow(MinecraftClient.getInstance().textRenderer,this.set.getDisplayName() + " " + Formatting.GRAY + this.set.getValString(), this.parent.parent.getX() + 2, this.parent.parent.getY() + this.offset + 4, -1);
+        else context.drawCenteredTextWithShadow(MinecraftClient.getInstance().textRenderer,this.set.getDisplayName() + " " + Formatting.GRAY + this.set.getValString(), this.parent.parent.getX() + 24, this.parent.parent.getY() + this.offset + 4, -1);
     }
     
     @Override

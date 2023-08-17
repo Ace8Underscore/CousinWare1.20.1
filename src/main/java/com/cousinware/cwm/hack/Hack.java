@@ -1,9 +1,7 @@
 package com.cousinware.cwm.hack;
 
-import com.cousinware.cwm.client.CwmClient;
 import com.cousinware.cwm.command.Command;
 import com.cousinware.cwm.managers.HackManager;
-import me.zero.alpine.listener.Subscriber;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.Formatting;
 

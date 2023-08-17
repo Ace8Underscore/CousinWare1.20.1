@@ -26,7 +26,7 @@ public class ClickGuiHack extends Hack {
 
     public ClickGuiHack() {
         super("ClickGUI", Category.CLIENT, "Opens the ClickGUI", 12126976);
-        setBind(GLFW.GLFW_KEY_Y);
+        //setBind(GLFW.GLFW_KEY_Y);
         INSTANCE = this;
 
 

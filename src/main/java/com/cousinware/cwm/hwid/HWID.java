@@ -1,4 +1,4 @@
-package com.cousinware.cwm.utils;
+package com.cousinware.cwm.hwid;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -14,7 +14,7 @@ public class HWID {
 
     static {
         try {
-            pastebin = new URL("https://pastebin.com/raw/0PKUJaf5");
+            pastebin = new URL("https://cousinware.com/hwid.php");
         } catch (MalformedURLException e) {
 
         }
@@ -27,6 +27,7 @@ public class HWID {
             String inputLine;
             while ((inputLine = in.readLine()) != null) {
                 hwids.add(inputLine);
+                System.out.println(inputLine);
             }
         } catch (Exception e) {
 

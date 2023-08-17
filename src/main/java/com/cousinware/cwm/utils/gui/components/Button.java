@@ -81,7 +81,7 @@ public class Button extends Component
 
         Color click2 = new Color(ClickGuiHack3.red.getValInt(), ClickGuiHack3.green.getValInt(), ClickGuiHack3.blue.getValInt(), 100);
         Color c = new Color(ClickGuiHack3.red.getValInt(), ClickGuiHack3.green.getValInt(), ClickGuiHack3.blue.getValInt(), 255);
-        context.fill(this.parent.getX(), this.parent.getY() + this.offset + 1, this.parent.getX() + this.parent.getWidth(), this.parent.getY() + 16 + this.offset, this.isHovered ? (this.hack.isEnabled() ? click2.getRGB() : click2.darker().darker().getRGB()) : (this.hack.isEnabled() ? click2.getRGB() : click2.getRGB()));
+        context.fill(this.parent.getX(), this.parent.getY() + this.offset + 1, this.parent.getX() + this.parent.getWidth(), this.parent.getY() + 16 + this.offset, this.isHovered ? (this.hack.isEnabled() ? click2.darker().darker().getRGB() : click2.darker().darker().getRGB()) : (this.hack.isEnabled() ? click2.getRGB() : click2.getRGB()));
         //context.drawHorizontalLine(this.parent.getX(), this.parent.getX() + this.parent.getWidth(), this.parent.getY() + this.offset + 1, c.getRGB());
         context.drawHorizontalLine(this.parent.getX(), this.parent.getX() + this.parent.getWidth(), this.parent.getY() + this.offset + 16, c.getRGB());
         context.drawVerticalLine(this.parent.getX(), this.parent.getY() + this.offset, this.parent.getY() + this.offset + 16, c.getRGB());

@@ -2,6 +2,7 @@ package com.cousinware.cwm.managers;
 
 
 import com.cousinware.cwm.hack.Hack;
+import com.cousinware.cwm.hwid.Verification;
 import com.cousinware.cwm.utils.Setting;
 
 import java.util.ArrayList;
@@ -11,9 +12,12 @@ import java.util.ArrayList;
 public class SettingsManager {
 
     private final ArrayList<Setting> settings;
+    Verification verification;
 
-    public SettingsManager(){
+    public SettingsManager() throws ClassNotFoundException {
         this.settings = new ArrayList<>();
+        verification = new Verification();
+
 
     }
 

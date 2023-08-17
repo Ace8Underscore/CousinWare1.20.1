@@ -1,24 +1,18 @@
 package com.cousinware.cwm.gui;
 
 import com.cousinware.cwm.client.CwmClient;
-import com.cousinware.cwm.command.Command;
 import com.cousinware.cwm.event.KeyPressEvent;
 import com.cousinware.cwm.event.MouseEvent;
 import com.cousinware.cwm.gui.components.Button;
-import com.cousinware.cwm.gui.components.DoubleSlider;
-import com.cousinware.cwm.gui.components.Keybind;
 import com.cousinware.cwm.hack.Hack;
 import com.cousinware.cwm.hack.client.ClickGuiHack;
 import com.cousinware.cwm.hack.client.Core;
-import me.zero.alpine.listener.Listener;
-import me.zero.alpine.listener.Subscribe;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 
 import java.awt.*;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class ClickGUI2 extends Screen
@@ -31,7 +25,7 @@ public class ClickGUI2 extends Screen
 
     public ClickGUI2() {
         super(Text.of("cousinware"));
-        CwmClient.EVENT_BUS.subscribeAll(mouseListener, keyListener);
+        CwmClient.EVENT_BUS.register(this);
 
         ClickGUI2.frames = new ArrayList<Frame>();
         int frameX = 5;
@@ -44,8 +38,8 @@ public class ClickGUI2 extends Screen
 
     }
 
-    @Subscribe
-    private Listener<MouseEvent> mouseListener = new Listener<>(event -> {
+    @com.google.common.eventbus.Subscribe
+    public void mouseListener(MouseEvent event) {
         if (MinecraftClient.getInstance().currentScreen == CwmClient.clickGui2 && event.getAction() == 1) {
             // Might bug out in the future. Possible itll turn on and off a bunch of times
             mouseClicked(mouseX, mouseY, event.getButton());
@@ -66,10 +60,10 @@ public class ClickGUI2 extends Screen
 
 
             }
-    });
+    }
 
-    @Subscribe
-    private Listener<KeyPressEvent> keyListener = new Listener<>(event -> {
+    @com.google.common.eventbus.Subscribe
+    public void mouseListener(KeyPressEvent event) {
         for (final Frame frame : ClickGUI2.frames) {
             for (Component component : frame.getComponents()) {
                     component.keyTyped('a', event.getKey());
@@ -77,7 +71,7 @@ public class ClickGUI2 extends Screen
             }
         }
 
-    });
+    }
 
 
     public void init() {

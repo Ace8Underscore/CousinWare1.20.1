@@ -8,13 +8,9 @@
  */
 package com.cousinware.cwm.event;
 
-import me.zero.alpine.event.CancellableEvent;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.util.math.MatrixStack;
 
-import net.minecraft.util.Identifier;
-
-public class RenderOverlayEvent extends CancellableEvent {
+public class RenderOverlayEvent extends EventCancellable {
 
 	private DrawContext context;
 	

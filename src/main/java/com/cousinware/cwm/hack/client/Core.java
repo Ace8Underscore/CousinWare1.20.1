@@ -28,8 +28,8 @@ public class Core extends Hack {
 
         CwmClient.settingsManager.rSetting(saturation = new Setting("Saturation", this, .8, 0, 1,false,  "ColorsSaturation", true));
         CwmClient.settingsManager.rSetting(brightness = new Setting("Brightness", this, .8, 0, 1,false,  "ColorsBrightness", true));
-        CwmClient.settingsManager.rSetting(speed = new Setting("Speed", this, 1, 0, 5,false,  "ColorsSpeed", true));
-        CwmClient.settingsManager.rSetting(customFont = new Setting("CustomFont", this, false, "CoreCustomFont", true));
+        CwmClient.settingsManager.rSetting(speed = new Setting("Speed", this, 1, 0, 20,true,  "ColorsSpeed", true));
+        CwmClient.settingsManager.rSetting(customFont = new Setting("CustomFont(DONT TOGGLE WIP)", this, false, "CoreCustomFont", true));
         CwmClient.settingsManager.rSetting(antiAlias = new Setting("AntiAlias", this, true, "CoreAntiAlias", true));
         CwmClient.settingsManager.rSetting(fractionalMetrics = new Setting("FractionalMetrics", this, true, "CoreFractionalMetrics", true));
         CwmClient.settingsManager.rSetting(capes = new Setting("Capes", this, true, "CoreCapes", true));

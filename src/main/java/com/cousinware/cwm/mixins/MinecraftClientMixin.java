@@ -7,12 +7,14 @@ import net.minecraft.client.MinecraftClient;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = MinecraftClient.class)
 public abstract class MinecraftClientMixin {
 
-    @Inject(at = @At("TAIL"), method = "tick")
+    @Inject(at = @At(value = "TAIL"), method = "tick")
     private void onTick(CallbackInfo info) {
         if (MinecraftClient.getInstance().world == null) return;
         HackManager.onUpdate();

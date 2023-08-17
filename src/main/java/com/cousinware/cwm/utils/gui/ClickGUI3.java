@@ -3,13 +3,12 @@ package com.cousinware.cwm.utils.gui;
 import com.cousinware.cwm.client.CwmClient;
 import com.cousinware.cwm.event.KeyPressEvent;
 import com.cousinware.cwm.event.MouseEvent;
-import com.cousinware.cwm.gui.ClickGUI2;
 import com.cousinware.cwm.hack.Hack;
 import com.cousinware.cwm.hack.client.ClickGuiHack;
+import com.cousinware.cwm.hack.client.ClickGuiHack3;
 import com.cousinware.cwm.hack.client.Core;
+import com.cousinware.cwm.utils.RainbowUtil;
 import com.cousinware.cwm.utils.gui.components.Button;
-import me.zero.alpine.listener.Listener;
-import me.zero.alpine.listener.Subscribe;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
@@ -28,7 +27,8 @@ public class ClickGUI3 extends Screen
 
     public ClickGUI3() {
         super(Text.of("cousinware2"));
-        CwmClient.EVENT_BUS.subscribeAll(mouseListener, keyListener);
+        CwmClient.EVENT_BUS.register(this);
+        //CwmClient.EVENT_BUS.register(keyListener);
 
         ClickGUI3.frames = new ArrayList<Frame>();
         int frameX = 5;
@@ -41,8 +41,8 @@ public class ClickGUI3 extends Screen
 
     }
 
-    @Subscribe
-    private Listener<MouseEvent> mouseListener = new Listener<>(event -> {
+    @com.google.common.eventbus.Subscribe
+    public void mouseListener(MouseEvent event) {
         if (MinecraftClient.getInstance().currentScreen == CwmClient.clickGUI3 && event.getAction() == 1) {
             // Might bug out in the future. Possible itll turn on and off a bunch of times
             mouseClicked(mouseX, mouseY, event.getButton());
@@ -63,10 +63,10 @@ public class ClickGUI3 extends Screen
 
 
             }
-    });
+    }
 
-    @Subscribe
-    private Listener<KeyPressEvent> keyListener = new Listener<>(event -> {
+    @com.google.common.eventbus.Subscribe
+    public void keyListener(KeyPressEvent event) {
         for (final Frame frame : ClickGUI3.frames) {
             for (Component component : frame.getComponents()) {
                 component.keyTyped('a', event.getKey());
@@ -74,7 +74,7 @@ public class ClickGUI3 extends Screen
             }
         }
 
-    });
+    }
 
 
     public void init() {
@@ -82,8 +82,12 @@ public class ClickGUI3 extends Screen
     }
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        if (ClickGuiHack3.rainbow.getValBoolean()) {
+            RainbowUtil.settingRainbow(ClickGuiHack3.red, ClickGuiHack3.green, ClickGuiHack3.blue);
+        }
         this.mouseX = mouseX;
         this.mouseY = mouseY;
+
         context.fill(0, 0, context.getScaledWindowWidth(), context.getScaledWindowHeight(), new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(),ClickGuiHack.blue.getValInt(), ClickGuiHack.gradiant.getValInt()).getRGB());
         ClickGUI3.color = new Color(ClickGuiHack.red.getValInt(), ClickGuiHack.green.getValInt(),ClickGuiHack.blue.getValInt(), ClickGuiHack.alpha.getValInt()).getRGB();
         for (final Frame frame : ClickGUI3.frames) {

@@ -1,7 +1,7 @@
 package com.cousinware.cwm.managers;
 
 import com.cousinware.cwm.utils.FriendUtil;
-import com.cousinware.cwm.utils.HWID;
+import com.cousinware.cwm.hwid.HWID;
 
 import java.lang.management.ManagementFactory;
 import java.util.ArrayList;

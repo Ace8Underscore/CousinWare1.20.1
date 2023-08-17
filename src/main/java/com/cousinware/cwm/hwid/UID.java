@@ -1,4 +1,4 @@
-package com.cousinware.cwm.utils;
+package com.cousinware.cwm.hwid;
 
 import net.minecraft.client.MinecraftClient;
 
@@ -10,7 +10,7 @@ public class UID {
 
     static List<String> hwids = new ArrayList<>();
 
-    public static String pastebin = "https://pastebin.com/raw/0PKUJaf5";
+    public static String pastebin = "https://cousinware.com/hwid.php";
 
     public static String getUID() {
         long currentHWID = Runtime.getRuntime().availableProcessors() + ((com.sun.management.OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize();

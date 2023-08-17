@@ -15,10 +15,10 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "com.cousinware.cwm.client.CwmClient"
+      "com.cousinware.cwm.Cwm"
     ],
     "main": [
-      "com.cousinware.cwm.Cwm"
+      "com.cousinware.cwm.client.CwmClient"
     ]
   },
   "mixins": [

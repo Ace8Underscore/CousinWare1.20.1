@@ -1,14 +1,11 @@
 package com.cousinware.cwm.hack.render;
 
 import com.cousinware.cwm.client.CwmClient;
-import com.cousinware.cwm.command.Command;
 import com.cousinware.cwm.event.RenderOverlayEvent;
 import com.cousinware.cwm.hack.Hack;
 import com.cousinware.cwm.utils.RainbowUtil;
 import com.cousinware.cwm.utils.Setting;
-import com.cousinware.cwm.utils.UID;
-import me.zero.alpine.listener.Listener;
-import me.zero.alpine.listener.Subscribe;
+import com.cousinware.cwm.hwid.UID;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -36,8 +33,8 @@ public class Welcomer extends Hack {
 
     }
 
-    @Subscribe
-    private final Listener<RenderOverlayEvent> listener = new Listener<>(event -> {
+    @com.google.common.eventbus.Subscribe
+    public void renderOverlayListener(RenderOverlayEvent event) {
         String timeMessage = "";
         long time = Calendar.getInstance().getTime().getHours();
         Color c = new Color(r.getValInt(), g.getValInt(), b.getValInt(), 255);
@@ -52,15 +49,15 @@ public class Welcomer extends Hack {
                 (event.getMatrices().getScaledWindowWidth() - mc.textRenderer.getWidth(timeMessage + (mode.getValString().equalsIgnoreCase("name") ? mc.player.getName().getString() : UID.getUID()))) / 2,
                 1, c.getRGB());
 
-    });
+    }
 
     public void onEnable() {
-        CwmClient.EVENT_BUS.subscribe(listener);
+        CwmClient.EVENT_BUS.register(this);
 
     }
 
     public void onDisable() {
-        CwmClient.EVENT_BUS.unsubscribe(listener);
+        CwmClient.EVENT_BUS.register(this);
 
     }
 

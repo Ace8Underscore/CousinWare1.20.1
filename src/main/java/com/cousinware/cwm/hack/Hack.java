@@ -1,5 +1,6 @@
 package com.cousinware.cwm.hack;
 
+import com.cousinware.cwm.client.CwmClient;
 import com.cousinware.cwm.command.Command;
 import com.cousinware.cwm.managers.HackManager;
 import net.minecraft.client.MinecraftClient;
@@ -85,6 +86,7 @@ public class Hack {
     }
 
     public void enable() {
+        CwmClient.EVENT_BUS.register(this);
         //MinecraftForge.EVENT_BUS.register(this);
         visableOnArray = true;
         anima = 0;
@@ -97,6 +99,7 @@ public class Hack {
     }
 
     public void disable() {
+        CwmClient.EVENT_BUS.unregister(this);
         Command.sendClientSideMessage("Disabled " + Formatting.RED + this.name);
 
         setEnabled(false);

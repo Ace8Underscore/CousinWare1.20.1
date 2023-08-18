@@ -6,6 +6,8 @@ import com.cousinware.cwm.hack.client.Core;
 import com.cousinware.cwm.hack.exploit.Exploit;
 import com.cousinware.cwm.hack.Hack;
 import com.cousinware.cwm.hack.exploit.OutgoingPackets;
+import com.cousinware.cwm.hack.movement.FastSwim;
+import com.cousinware.cwm.hack.player.AntiVoid;
 import com.cousinware.cwm.hack.render.Welcomer;
 
 import java.util.ArrayList;
@@ -107,12 +109,27 @@ public class HackManager {
 
     public HackManager() {
         hacks = new ArrayList<>();
+
+
+        //CLIENT
+        hacks.add(new ClickGuiHack());
+        hacks.add(new ClickGuiHack3());
+        hacks.add(new Core());
+
+        //EXPLOIT
         hacks.add(new Exploit());
         hacks.add(new OutgoingPackets());
-        hacks.add(new ClickGuiHack());
-        hacks.add(new Core());
-        hacks.add(new Welcomer());
+
+        //PLAYER
+        hacks.add(new AntiVoid());
+
+
+        //MOVEMENT
+        hacks.add(new FastSwim());
+
+        //RENDER
         hacks.add(new com.cousinware.cwm.hack.render.ArrayList());
-        hacks.add(new ClickGuiHack3());
+        hacks.add(new Welcomer());
+
     }
 }

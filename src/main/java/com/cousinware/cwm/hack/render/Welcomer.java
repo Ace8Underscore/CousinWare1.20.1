@@ -52,12 +52,12 @@ public class Welcomer extends Hack {
     }
 
     public void onEnable() {
-        CwmClient.EVENT_BUS.register(this);
+
 
     }
 
     public void onDisable() {
-        CwmClient.EVENT_BUS.register(this);
+
 
     }
 

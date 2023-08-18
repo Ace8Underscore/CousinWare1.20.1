@@ -70,6 +70,7 @@ public class ArrayList extends Hack {
         if (mc.world == null)
             return;
         hackCount = 0;
+
         //anima = 0;
         HackManager.getHacks()
                 .stream()
@@ -93,12 +94,12 @@ public class ArrayList extends Hack {
                     if (!Core.customFont.getValBoolean()) {
                         if (orderMode.getValString().equalsIgnoreCase("up") && sideMode.getValString().equalsIgnoreCase("left")) {
                             if (rainbow.getValBoolean()) {
-                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
+                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt(), 255);
                                 event.getMatrices().drawTextWithShadow(mc.textRenderer,h.getName() + Formatting.GRAY + " " + h.getHudInfo(), animation.getValBoolean() ? displayX : x.getValInt(), y.getValInt() + (hackCount * 10), RainbowUtil.getRainbow(hackCount * 150));
                                 hackCount++;
                                 RainbowUtil.settingRainbow(r, g, b);
                             } else {
-                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
+                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt(), 255);
                                 event.getMatrices().drawTextWithShadow(mc.textRenderer,h.getName() + Formatting.GRAY + " " + h.getHudInfo(), animation.getValBoolean() ? displayX : x.getValInt(), y.getValInt() + (hackCount * 10), staticc.getValBoolean() ? h.color : staticc.getValBoolean() ? h.color : c.getRGB());
                                 hackCount++;
 
@@ -106,12 +107,12 @@ public class ArrayList extends Hack {
                         }
                         if (orderMode.getValString().equalsIgnoreCase("down") && sideMode.getValString().equalsIgnoreCase("right")) {
                             if (rainbow.getValBoolean()) {
-                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
+                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt(), 255);
                                 event.getMatrices().drawTextWithShadow(mc.textRenderer,h.getName() + Formatting.GRAY + " " + h.getHudInfo(), animation.getValBoolean() ? displayX : x.getValInt(), y.getValInt() - (hackCount * 10), RainbowUtil.getRainbow(hackCount * 150));
                                 hackCount++;
                                 RainbowUtil.settingRainbow(r, g, b);
                             } else {
-                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
+                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt(), 255);
                                 event.getMatrices().drawTextWithShadow(mc.textRenderer,h.getName() + Formatting.GRAY + " " + h.getHudInfo(), animation.getValBoolean() ? displayX : x.getValInt(), y.getValInt() - (hackCount * 10), staticc.getValBoolean() ? h.color : c.getRGB());
                                 hackCount++;
 
@@ -120,12 +121,12 @@ public class ArrayList extends Hack {
 
                         if (orderMode.getValString().equalsIgnoreCase("up") && sideMode.getValString().equalsIgnoreCase("right")) {
                             if (rainbow.getValBoolean()) {
-                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
+                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt(), 255);
                                 event.getMatrices().drawTextWithShadow(mc.textRenderer,h.getName() + Formatting.GRAY + " " + h.getHudInfo(), animation.getValBoolean() ? displayX : x.getValInt(), y.getValInt() + (hackCount * 10), RainbowUtil.getRainbow(hackCount * 150));
                                 hackCount++;
                                 RainbowUtil.settingRainbow(r, g, b);
                             } else {
-                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
+                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt(), 255);
                                 event.getMatrices().drawTextWithShadow(mc.textRenderer,h.getName() + Formatting.GRAY + " " + h.getHudInfo(), animation.getValBoolean() ? displayX : x.getValInt(), y.getValInt() + (hackCount * 10), staticc.getValBoolean() ? h.color : c.getRGB());
                                 hackCount++;
 
@@ -134,12 +135,12 @@ public class ArrayList extends Hack {
 
                         if (orderMode.getValString().equalsIgnoreCase("down") && sideMode.getValString().equalsIgnoreCase("left")) {
                             if (rainbow.getValBoolean()) {
-                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
+                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt(), 255);
                                 event.getMatrices().drawTextWithShadow(mc.textRenderer,h.getName() + Formatting.GRAY + " " + h.getHudInfo(), animation.getValBoolean() ? displayX : x.getValInt(), y.getValInt() + (hackCount * -10), RainbowUtil.getRainbow(hackCount * 150));
                                 hackCount++;
                                 RainbowUtil.settingRainbow(r, g, b);
                             } else {
-                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt());
+                                c = new Color(r.getValInt(), g.getValInt(), b.getValInt(), 255);
                                 event.getMatrices().drawTextWithShadow(mc.textRenderer,h.getName() + Formatting.GRAY + " " + h.getHudInfo(), animation.getValBoolean() ? displayX : x.getValInt(), y.getValInt() + (hackCount * -10), staticc.getValBoolean() ? h.color : c.getRGB());
                                 hackCount++;
 
@@ -214,12 +215,12 @@ public class ArrayList extends Hack {
     }
 
     public void onEnable() {
-        CwmClient.EVENT_BUS.register(this);
+
 
     }
 
     public void onDisable() {
-        CwmClient.EVENT_BUS.register(this);
+
 
     }
 

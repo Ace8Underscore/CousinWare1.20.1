@@ -6,6 +6,7 @@ import com.cousinware.cwm.hack.Hack;
 import com.cousinware.cwm.utils.RainbowUtil;
 import com.cousinware.cwm.utils.Setting;
 import com.cousinware.cwm.hwid.UID;
+import com.cousinware.eventlistener.Listener;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -14,11 +15,11 @@ import java.util.Calendar;
 
 public class Welcomer extends Hack {
 
-    Setting mode;
-    Setting r;
-    Setting g;
-    Setting b;
-    Setting rainbow;
+    static Setting mode;
+    static Setting r;
+    static Setting g;
+    static Setting b;
+    static Setting rainbow;
 
     public Welcomer() {
         super("Welcomer", Category.RENDER,3093151);
@@ -30,11 +31,10 @@ public class Welcomer extends Hack {
         CwmClient.settingsManager.rSetting(r = new Setting("Red", this, 255, 0, 255, true, "WelcomerRed", !rainbow.getValBoolean()));
         CwmClient.settingsManager.rSetting(g = new Setting("Green", this, 26, 0, 255, true, "WelcomerGreen", !rainbow.getValBoolean()));
         CwmClient.settingsManager.rSetting(b = new Setting("Blue", this, 42, 0, 255, true, "WelcomerBlue", !rainbow.getValBoolean()));
-
     }
 
-    @com.google.common.eventbus.Subscribe
-    public void renderOverlayListener(RenderOverlayEvent event) {
+    @Listener
+    public static void renderOverlayListener(RenderOverlayEvent event) {
         String timeMessage = "";
         long time = Calendar.getInstance().getTime().getHours();
         Color c = new Color(r.getValInt(), g.getValInt(), b.getValInt(), 255);

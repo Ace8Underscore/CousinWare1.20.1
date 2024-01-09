@@ -23,7 +23,7 @@ public class InGameHudMixin {
     @Inject(method = "render", at = @At("HEAD"))
     private void renderOverlay(DrawContext context, float tickDelta, CallbackInfo ci) {
             RenderOverlayEvent event = new RenderOverlayEvent(context, tickDelta);
-            CwmClient.EVENT_BUS.post(event);
+            CwmClient.eventBus.postEvent(event);
             this.overlayTinted = false;
             this.vignetteDarkness = 0;
 

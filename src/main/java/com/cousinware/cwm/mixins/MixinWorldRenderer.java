@@ -23,7 +23,7 @@ public class MixinWorldRenderer {
     @Inject(method = "render", at = @At("HEAD"), cancellable = true)
     private void render_head(MatrixStack matrices, float tickDelta, long limitTime, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f matrix4f, CallbackInfo callback) {
         WorldRenderEvent.Pre event = new WorldRenderEvent.Pre(tickDelta, matrices);
-        CwmClient.EVENT_BUS.post(event);
+        CwmClient.eventBus.postEvent(event);
 
         if (event.isCanceled()) {
             callback.cancel();
@@ -35,7 +35,7 @@ public class MixinWorldRenderer {
                                LightmapTextureManager lightmapTextureManager, Matrix4f matrix4f, CallbackInfo callback) {
         RenderSystem.clear(GL11.GL_DEPTH_BUFFER_BIT, MinecraftClient.IS_SYSTEM_MAC);
         WorldRenderEvent.Post event = new WorldRenderEvent.Post(tickDelta, matrices);
-        CwmClient.EVENT_BUS.post(event);
+        CwmClient.eventBus.postEvent(event);
     }
 
 

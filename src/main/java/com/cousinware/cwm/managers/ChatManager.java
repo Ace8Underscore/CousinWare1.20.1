@@ -4,6 +4,7 @@ import com.cousinware.cwm.client.CwmClient;
 import com.cousinware.cwm.command.Command;
 import com.cousinware.cwm.event.MouseEvent;
 import com.cousinware.cwm.event.PacketEvent;
+import com.cousinware.eventlistener.Listener;
 import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import net.minecraft.network.packet.s2c.play.ChatMessageS2CPacket;
 import net.minecraft.util.Formatting;
@@ -12,12 +13,12 @@ import net.minecraft.util.Formatting;
 public class ChatManager {
 
     public ChatManager() {
-        CwmClient.EVENT_BUS.register(this);
+        CwmClient.eventBus.addListener(this);
     }
 
 
-    @com.google.common.eventbus.Subscribe
-    public void packetListener(PacketEvent.Send event) {
+    @Listener
+    public static void packetListener(PacketEvent.Send event) {
 
         String message = "";
 

@@ -24,7 +24,7 @@ public class ClientConnectionMixin {
     private void onSendPacket(Packet<?> packet, PacketCallbacks callbacks, CallbackInfo ci) {
         //if (this.channel.isOpen() && packet != null) {
             PacketEvent.Send event = new PacketEvent.Send(packet);
-            CwmClient.EVENT_BUS.post(event);
+            CwmClient.eventBus.postEvent(event);
 
             if (event.isCanceled()) {
                 ci.cancel();
@@ -35,7 +35,7 @@ public class ClientConnectionMixin {
     @Inject(method = "channelRead0", at = @At("HEAD"), cancellable = true)
     private void channelRead0(ChannelHandlerContext channelHandlerContext, Packet<?> packet, CallbackInfo callback) {
         PacketEvent.Receive event = new PacketEvent.Receive(packet);
-        CwmClient.EVENT_BUS.post(event);
+        CwmClient.eventBus.postEvent(event);
         if (event.isCanceled()) {
             callback.cancel();
         }

@@ -86,7 +86,7 @@ public class Hack {
     }
 
     public void enable() {
-        CwmClient.EVENT_BUS.register(this);
+        CwmClient.eventBus.addListener(this);
         //MinecraftForge.EVENT_BUS.register(this);
         visableOnArray = true;
         anima = 0;
@@ -99,7 +99,8 @@ public class Hack {
     }
 
     public void disable() {
-        CwmClient.EVENT_BUS.unregister(this);
+
+        CwmClient.eventBus.removeListener(this);
         Command.sendClientSideMessage("Disabled " + Formatting.RED + this.name);
 
         setEnabled(false);

@@ -16,7 +16,7 @@ public class KeyboardMixin {
     private void onKeyEvent(long windowPointer, int key, int scanCode, int action, int modifiers, CallbackInfo callbackInfo) {
         if (key >= 0) {
             KeyPressEvent event = new KeyPressEvent(key, scanCode, action, modifiers);
-            CwmClient.EVENT_BUS.post(event);
+            CwmClient.eventBus.postEvent(event);
 
             if (event.isCanceled()) {
                 callbackInfo.cancel();

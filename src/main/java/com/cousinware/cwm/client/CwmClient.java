@@ -1,14 +1,12 @@
 package com.cousinware.cwm.client;
 
-import com.cousinware.cwm.Cwm;
-import com.cousinware.cwm.event.KeyPressEvent;
 import com.cousinware.cwm.gui.ClickGUI2;
 import com.cousinware.cwm.managers.*;
 import com.cousinware.cwm.utils.config.ConfigUtils;
 import com.cousinware.cwm.utils.config.ShutDown;
 import com.cousinware.cwm.utils.font.CFontRenderer;
 import com.cousinware.cwm.utils.gui.ClickGUI3;
-import com.google.common.eventbus.EventBus;
+import com.cousinware.eventlistener.EventBus;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.MinecraftClient;
@@ -16,7 +14,6 @@ import net.minecraft.util.crash.CrashReport;
 
 import java.awt.*;
 import java.lang.management.ManagementFactory;
-import java.net.MalformedURLException;
 
 @net.fabricmc.api.Environment(EnvType.CLIENT)
 public class CwmClient implements ModInitializer {
@@ -28,7 +25,8 @@ public class CwmClient implements ModInitializer {
     public final String clientHWID  = String.valueOf(Runtime.getRuntime().availableProcessors() +
             ((com.sun.management.OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize());
 
-    public static final EventBus EVENT_BUS = new EventBus();
+   // public static final EventBus EVENT_BUS = new EventBus();
+    public static EventBus eventBus;
     public static KeyboardManager keyboardManager;
     public static HackManager hackManager;
     public static ChatManager chatManager;
@@ -46,6 +44,7 @@ public class CwmClient implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        eventBus = new EventBus();
         keyboardManager = new KeyboardManager();
         commandManager = new CommandManager();
         try {

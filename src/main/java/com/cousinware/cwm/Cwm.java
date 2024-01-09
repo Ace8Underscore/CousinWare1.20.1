@@ -32,23 +32,23 @@ public class Cwm implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        try {
-            hwid = new HWID();
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            hwid = new HWID();
+//        } catch (MalformedURLException e) {
+//            throw new RuntimeException(e);
+//        }
 
-        //runs basics hwid check with our website
-        if (HWID.isGoodHWID(clientHWID)) {
-            //Client can run as usual
-            System.out.println("PASSED HWID VERIFICATION 1");
-            CwmClient.Vpassed++;
-        } else {
-            CrashReport crashReport = new CrashReport("FAILED HWID CHECK ERROR CODE 19x00a", new Throwable());
-            MinecraftClient.getInstance().close();
-            //add code to delete lastest log for this issue to prevent reverse engineering
-            CwmClient.Vfailed++;
-        }
+//        runs basics hwid check with our website
+//        if (HWID.isGoodHWID(clientHWID)) {
+//            //Client can run as usual
+//            System.out.println("PASSED HWID VERIFICATION 1");
+//            CwmClient.Vpassed++;
+//        } else {
+//            CrashReport crashReport = new CrashReport("FAILED HWID CHECK ERROR CODE 19x00a", new Throwable());
+//            MinecraftClient.getInstance().close();
+//            //add code to delete lastest log for this issue to prevent reverse engineering
+//            CwmClient.Vfailed++;
+//        }
 
 
     }

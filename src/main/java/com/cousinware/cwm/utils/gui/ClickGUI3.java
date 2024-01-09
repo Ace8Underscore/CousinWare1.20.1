@@ -9,6 +9,7 @@ import com.cousinware.cwm.hack.client.ClickGuiHack3;
 import com.cousinware.cwm.hack.client.Core;
 import com.cousinware.cwm.utils.RainbowUtil;
 import com.cousinware.cwm.utils.gui.components.Button;
+import com.cousinware.eventlistener.Listener;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
@@ -21,13 +22,13 @@ public class ClickGUI3 extends Screen
 {
     public static ArrayList<Frame> frames;
     public static int color;
-    int mouseX;
-    int mouseY;
+    static int mouseX;
+    static int mouseY;
 
 
     public ClickGUI3() {
         super(Text.of("cousinware2"));
-        CwmClient.EVENT_BUS.register(this);
+        CwmClient.eventBus.addListener(this);
         //CwmClient.EVENT_BUS.register(keyListener);
 
         ClickGUI3.frames = new ArrayList<Frame>();
@@ -41,8 +42,8 @@ public class ClickGUI3 extends Screen
 
     }
 
-    @com.google.common.eventbus.Subscribe
-    public void mouseListener(MouseEvent event) {
+    @Listener
+    public static void mouseListener(MouseEvent event) {
         if (MinecraftClient.getInstance().currentScreen == CwmClient.clickGUI3 && event.getAction() == 1) {
             // Might bug out in the future. Possible itll turn on and off a bunch of times
             mouseClicked(mouseX, mouseY, event.getButton());
@@ -65,8 +66,8 @@ public class ClickGUI3 extends Screen
             }
     }
 
-    @com.google.common.eventbus.Subscribe
-    public void keyListener(KeyPressEvent event) {
+    @Listener
+    public static void keyListener(KeyPressEvent event) {
         for (final Frame frame : ClickGUI3.frames) {
             for (Component component : frame.getComponents()) {
                 component.keyTyped('a', event.getKey());
@@ -147,7 +148,7 @@ public class ClickGUI3 extends Screen
 
 
 
-    protected void mouseClicked(final int mouseX, final int mouseY, final int mouseButton) {
+    protected static void mouseClicked(final int mouseX, final int mouseY, final int mouseButton) {
         for (final Frame frame : ClickGUI3.frames) {
             if (frame.isWithinHeader(mouseX, mouseY) && mouseButton == 0) {
                 frame.setDrag(true);

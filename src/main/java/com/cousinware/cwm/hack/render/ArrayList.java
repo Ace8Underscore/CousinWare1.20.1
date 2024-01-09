@@ -8,6 +8,7 @@ import com.cousinware.cwm.hack.client.Core;
 import com.cousinware.cwm.managers.HackManager;
 import com.cousinware.cwm.utils.RainbowUtil;
 import com.cousinware.cwm.utils.Setting;
+import com.cousinware.eventlistener.Listener;
 import com.google.common.eventbus.Subscribe;
 import net.minecraft.util.Formatting;
 
@@ -20,24 +21,24 @@ public class ArrayList extends Hack {
      * @author Ace________/Ace_#1233
      */
 
-    int hackCount;
+    static int hackCount;
 
 
 
-    Setting x;
-    Setting y;
-    Setting sideMode;
-    Setting orderMode;
-    Setting r;
-    Setting g;
-    Setting b;
-    Color c;
-    Setting rainbow;
-    Setting staticc;
-    Setting animation;
-    Setting delaySetting;
+    static Setting x;
+    static Setting y;
+    static Setting sideMode;
+    static Setting orderMode;
+    static Setting r;
+    static Setting g;
+    static Setting b;
+    static Color c;
+    static Setting rainbow;
+    static Setting staticc;
+    static Setting animation;
+    static Setting delaySetting;
 
-    int displayX;
+    static int displayX;
     int anima = 0;
     int delay = 0;
 
@@ -65,8 +66,8 @@ public class ArrayList extends Hack {
         CwmClient.settingsManager.rSetting(delaySetting = new Setting("AnimationDelay", this, 1, 1, 20, true, "ArrayListDelay", true));
     }
 
-    @Subscribe
-    public void renderOverlayListener(RenderOverlayEvent event) {
+    @Listener
+    public static void renderOverlayListener(RenderOverlayEvent event) {
         if (mc.world == null)
             return;
         hackCount = 0;

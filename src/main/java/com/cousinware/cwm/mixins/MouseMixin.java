@@ -15,7 +15,7 @@ public class MouseMixin {
     private void onMouseButton(long window, int button, int action, int mods, CallbackInfo ci) {
 
         MouseEvent event = new MouseEvent(window, button, action, mods);
-        CwmClient.EVENT_BUS.post(event);
+        CwmClient.eventBus.postEvent(event);
 
     }
 }
